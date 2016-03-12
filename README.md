@@ -3,7 +3,7 @@ Simple ATL Tutorial source code follow the tutorial http://www.codeproject.com/A
 
 
 
-related resources:
+##related resources:
 
 http://progtutorials.tripod.com/COM.htm
 

@@ -1,0 +1,68 @@
+// SimpleATLCom.idl : SimpleATLCom的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(SimpleATLCom.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(A1AC94A4-BE6B-472F-B83A-B948826C1CF1),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ISimpleCom : IDispatch{
+	[id(1)] HRESULT Calculate([in] VARIANT_BOOL a_bFireEvent, [out, retval] LONG* a_lTotalMarks);
+	[propget, id(2)] HRESULT ComMarks([out, retval] LONG* pVal);
+	[propput, id(2)] HRESULT ComMarks([in] LONG newVal);
+	[propget, id(3)] HRESULT AtlMarks([out, retval] LONG* pVal);
+	[propput, id(3)] HRESULT AtlMarks([in] LONG newVal);
+	[propget, id(4)] HRESULT StudentName([out, retval] BSTR* pVal);
+	[propput, id(4)] HRESULT StudentName([in] BSTR newVal);
+};
+[
+	object,
+	uuid(3C4AB270-4204-4129-84D4-8604607F28B3),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ISimpleATLDLGController : IDispatch{
+	[id(1)] HRESULT InvokeDialog3();
+};
+[
+	uuid(A44605CC-11B3-4C8A-BAE5-5CD412648088),
+	version(1.0),
+]
+library SimpleATLComLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(76900E9D-35C2-498E-A1EA-5AFC9783E06A)		
+	]
+	dispinterface _ISimpleComEvents
+	{
+		properties:
+		methods:
+			[id(1)] HRESULT TotalMarks(LONG a_lTotalMarks);
+	};
+	[
+		uuid(4F8B280F-2D93-490B-8E52-90D848B1D41C)		
+	]
+	coclass SimpleCom
+	{
+		[default] interface ISimpleCom;
+		[default, source] dispinterface _ISimpleComEvents;
+	};
+	[
+		uuid(B5BD65C8-8E9F-4243-9D5B-7897C0BD7ACA)		
+	]
+	coclass SimpleATLDLGController
+	{
+		[default] interface ISimpleATLDLGController;
+	};
+};
+
